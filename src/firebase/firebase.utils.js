@@ -12,6 +12,8 @@ const config = {
   appId: "1:612841955702:web:5f09c7fdedf08b22"
 };
 
+firebase.initializeApp(config);
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
@@ -31,14 +33,46 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData
       })
     } catch (error) {
-      console.log('err=or creating user', error.message);
+      console.log('error creating user', error.message);
     }
   }
 
   return userRef;
 }
 
-firebase.initializeApp(config);
+// We can use this function to add collection and documents to firebase from
+// data in our code
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = firestore.collection(collectionKey);
+  console.log(collectionRef);
+
+  const batch = firestore.batch();
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit();
+};
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    };
+  });
+
+  // reduce array to a single object (or map) for optimization
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {})
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

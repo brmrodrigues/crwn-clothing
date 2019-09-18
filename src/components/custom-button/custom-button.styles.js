@@ -1,4 +1,4 @@
-import styles, { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const buttonStyles = css`
   background-color: black;
@@ -42,7 +42,7 @@ const getButtonStyles = props => {
   return props.inverted ? invertedButtonStyles : buttonStyles;
 }
 
-export const CustomButtonContainer = styles.button`
+export const CustomButtonContainer = styled.button`
   min-width: 165px;
   width: auto;
   height: 50px;
