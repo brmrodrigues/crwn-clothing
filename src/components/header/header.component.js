@@ -16,7 +16,7 @@ import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './
 const Header = ({ currentUser, hidden }) => (
 	<HeaderContainer>
 		<LogoContainer to='/'>
-			<Logo />
+			<Logo className='logo' />
 		</LogoContainer>
 		<OptionsContainer>
 			<OptionLink to='/shop'>
@@ -27,11 +27,11 @@ const Header = ({ currentUser, hidden }) => (
       </OptionLink>
 			{
 				currentUser ?
-					(<OptionLink as='div' to='/signin' onClick={() => auth.signOut()}>
+					(<OptionLink as='div' onClick={() => auth.signOut()}>
 						SIGN OUT
 					</OptionLink>)
 					:
-					(<OptionLink as='div' to='/signin'>
+					(<OptionLink to='/signin'>
 						SIGN IN
 					</OptionLink>)
 			}
