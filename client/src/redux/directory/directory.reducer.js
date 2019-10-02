@@ -1,37 +1,37 @@
 const INITIAL_STATE = {
   sections: [
     {
-      title: 'hats',
-      imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+      title: 'Sanduíches',
+      imageUrl: 'https://i.imgur.com/CrfREjx.jpg',
       id: 1,
-      linkUrl: 'shop/hats'
+      linkUrl: 'shop/sanduiches'
     },
     {
-      title: 'jackets',
-      imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
+      title: 'Sucos',
+      imageUrl: 'https://i.imgur.com/mkpphZt.jpeg',
       id: 2,
-      linkUrl: 'shop/jackets'
+      linkUrl: 'shop/sucos'
     },
     {
-      title: 'sneakers',
-      imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
+      title: 'Saladas',
+      imageUrl: 'https://i.imgur.com/CrfREjx.jpeg',
       id: 3,
-      linkUrl: 'shop/sneakers'
+      linkUrl: 'shop/saladas'
     },
-    {
-      title: 'womens',
-      imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-      size: 'large',
-      id: 4,
-      linkUrl: 'shop/womens'
-    },
-    {
-      title: 'mens',
-      imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-      size: 'large',
-      id: 5,
-      linkUrl: 'shop/mens'
-    }
+    // {
+    //   title: 'womens',
+    //   imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
+    //   size: 'large',
+    //   id: 4,
+    //   linkUrl: 'shop/womens'
+    // },
+    // {
+    //   title: 'mens',
+    //   imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
+    //   size: 'large',
+    //   id: 5,
+    //   linkUrl: 'shop/mens'
+    // }
   ]
 };
 
