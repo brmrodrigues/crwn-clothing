@@ -30,7 +30,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
 export function* signInWithGoogle() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
-    yield getSnapshotFromUserAuth(user);
+    yield getSnapshotFromUserAuth(user, { isAdmin: false });
   } catch (error) {
     yield put(
       signInFailure(error)
@@ -71,7 +71,7 @@ export function* signOut() {
 export function* signUp({ payload: { displayName, email, password } }) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    yield put(signUpSuccess({ user, additionalData: { displayName } }))
+    yield put(signUpSuccess({ user, additionalData: { displayName, isAdmin: false } }))
   } catch (error) {
     yield put(signUpFailure(error));
   }
