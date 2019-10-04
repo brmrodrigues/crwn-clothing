@@ -8,10 +8,14 @@ import {
   signOutSuccess,
   signOutFailure,
   signUpSuccess,
-  signUpFailure
+  signUpFailure,
+  searchCepSuccess,
+  searchCepFailure
 } from './user.actions'
 
 import { auth, googleProvider, createUserProfileDocument, getCurrentUser } from '../../firebase/firebase.utils';
+
+import { fetchCep } from '../../viacep/via-cep.utils';
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   try {
@@ -68,12 +72,21 @@ export function* signOut() {
   }
 }
 
-export function* signUp({ payload: { displayName, email, password } }) {
+export function* signUp({ payload: { displayName, email, password, cep, street, number, district, city, state, complement } }) {
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    yield put(signUpSuccess({ user, additionalData: { displayName, isAdmin: false } }))
+    yield put(signUpSuccess({ user, additionalData: { displayName, cep, street, number, district, city, state, complement, isAdmin: false } }))
   } catch (error) {
     yield put(signUpFailure(error));
+  }
+}
+
+export function* searchCep({ payload: cep }) {
+  try {
+    const address = yield fetchCep(cep);
+    yield put(searchCepSuccess(address));
+  } catch (error) {
+    yield put(searchCepFailure(error));
   }
 }
 
@@ -105,6 +118,10 @@ export function* onSignUpStart() {
   yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
 }
 
+export function* onSearchCepStart() {
+  yield takeLatest(UserActionTypes.SEARCH_CEP_START, searchCep);
+}
+
 export function* userSagas() {
   yield all([
     call(onGoogleSignInStart),
@@ -112,6 +129,7 @@ export function* userSagas() {
     call(onCheckUserSession),
     call(onSignOutStart),
     call(onSignUpStart),
-    call(onSignUpSuccess)
+    call(onSignUpSuccess),
+    call(onSearchCepStart)
   ]);
 }

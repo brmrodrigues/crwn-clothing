@@ -50,3 +50,18 @@ export const signUpFailure = error => ({
   type: UserActionTypes.SIGN_UP_FAILURE,
   payload: error
 });
+
+export const searchCepStart = cep => ({
+  type: UserActionTypes.SEARCH_CEP_START,
+  payload: cep
+});
+
+export const searchCepSuccess = address => ({
+  type: UserActionTypes.SEARCH_CEP_SUCCESS,
+  payload: address
+});
+
+export const searchCepFailure = error => ({
+  type: UserActionTypes.SEARCH_CEP_FAILURE,
+  payload: error
+});

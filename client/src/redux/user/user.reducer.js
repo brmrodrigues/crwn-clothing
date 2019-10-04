@@ -1,7 +1,8 @@
 import UserActionTypes from './user.types';
 
 const INITIAL_STATE = {
-  currentUser: null
+  currentUser: null,
+  currentAddress: null
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentUser: null,
+        error: null
+      }
+    case UserActionTypes.SEARCH_CEP_SUCCESS:
+      return {
+        ...state,
+        currentAddress: action.payload,
         error: null
       }
     case UserActionTypes.SIGN_IN_FAILURE:
