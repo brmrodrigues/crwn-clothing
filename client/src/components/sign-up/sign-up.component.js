@@ -36,6 +36,7 @@ const SignUp = ({ signUpStart, searchCepStart, address }) => {
         state: address.state,
       });
     }
+    // eslint-disable-next-line
   }, [address]);
 
   const { displayName, email, password, confirmPassword, cep, street, number, district, city, state, complement } = userCredentials;
