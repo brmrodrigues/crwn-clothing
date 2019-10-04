@@ -40,6 +40,23 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 }
 
+export const addCollectionToUserDocument = async (userAuth, data) => {
+  if (!userAuth) return;
+
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+  try {
+    await userRef
+      .collection('orders')
+      .set({ data });
+  } catch (error) {
+    console.log('error adding collection to user', error);
+    return false;
+  }
+
+  return true;
+}
+
 // We can use this function to add collection and documents to firebase from
 // data in our code
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {

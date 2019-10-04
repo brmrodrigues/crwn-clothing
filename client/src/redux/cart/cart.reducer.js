@@ -4,6 +4,7 @@ import { addItemToCart, removeItemFromCart } from './cart.utils';
 const INITIAL_STATE = {
   hidden: true,
   cartItems: []
+  // add flag to redirect to sign-in-sign-up-component
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -32,6 +33,17 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: []
+      }
+    case CartActionTypes.ORDER_SUCCESS:
+      console.log('Pedido realizado com sucesso!');
+      return {
+        ...state,
+        cartItems: []
+      }
+    case CartActionTypes.ORDER_FAILURE:
+      console.log('Por favor, faça o login antes de realizar o pedido');
+      return {
+        ...state,
       }
     default:
       return state;
