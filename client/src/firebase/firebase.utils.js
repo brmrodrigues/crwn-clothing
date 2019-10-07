@@ -44,11 +44,11 @@ export const addCollectionToUserDocument = async (userAuth, data) => {
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
-
+  console.log(userRef);
   try {
     await userRef
       .collection('orders')
-      .set({ data });
+      .add({ data });
   } catch (error) {
     console.log('error adding collection to user', error);
     return false;

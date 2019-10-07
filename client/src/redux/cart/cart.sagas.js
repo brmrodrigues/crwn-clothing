@@ -9,7 +9,7 @@ import {
 } from '../cart/cart.actions';
 
 import { CartActionTypes } from './cart.types';
-import { addCollectionAndDocuments, getCurrentUser } from '../../firebase/firebase.utils';
+import { getCurrentUser, addCollectionToUserDocument } from '../../firebase/firebase.utils';
 
 export function* clearCartOnSignOut() {
   yield put(clearCart());
@@ -22,7 +22,16 @@ export function* onSignOutSuccess() {
 export function* orderRequest({ payload: orderData }) {
   try {
     const userAuth = yield getCurrentUser();
-    yield call(addCollectionAndDocuments, userAuth, orderData);
+    const items = yield orderData.map(
+      cartItem => ({
+        id: cartItem.id,
+        name: cartItem.name,
+        price: cartItem.price,
+        quantity: cartItem.quantity
+      }));
+    console.log(orderData);
+    console.log(items);
+    yield call(addCollectionToUserDocument, userAuth, items);
     yield put(orderSuccess());
   } catch (error) {
     yield put(orderFailure(error));
