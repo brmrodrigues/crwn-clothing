@@ -28,11 +28,12 @@ export const orderStart = orderData => ({
   payload: orderData
 })
 
-export const orderSuccess = () => ({
-  type: CartActionTypes.ORDER_SUCCESS
+export const orderSuccess = orderMessage => ({
+  type: CartActionTypes.ORDER_SUCCESS,
+  payload: orderMessage
 })
 
-export const orderFailure = error => ({
+export const orderFailure = orderMessage => ({
   type: CartActionTypes.ORDER_FAILURE,
-  payload: error
+  payload: orderMessage
 })

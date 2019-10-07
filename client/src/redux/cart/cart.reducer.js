@@ -35,13 +35,13 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         cartItems: []
       }
     case CartActionTypes.ORDER_SUCCESS:
-      console.log('Pedido realizado com sucesso!');
+      alert(action.payload);
       return {
         ...state,
-        cartItems: []
+        cartItems: [],
       }
     case CartActionTypes.ORDER_FAILURE:
-      console.log('Por favor, faça o login antes de realizar o pedido');
+      alert(action.payload);
       return {
         ...state,
       }

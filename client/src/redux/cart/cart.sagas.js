@@ -22,6 +22,10 @@ export function* onSignOutSuccess() {
 export function* orderRequest({ payload: orderData }) {
   try {
     const userAuth = yield getCurrentUser();
+    if (!userAuth) {
+      yield put(orderFailure('Por favor, faça o login antes de realizar o pedido'));
+      return;
+    }
     const items = yield orderData.map(
       cartItem => ({
         id: cartItem.id,
@@ -29,12 +33,10 @@ export function* orderRequest({ payload: orderData }) {
         price: cartItem.price,
         quantity: cartItem.quantity
       }));
-    console.log(orderData);
-    console.log(items);
     yield call(addCollectionToUserDocument, userAuth, items);
-    yield put(orderSuccess());
+    yield put(orderSuccess('Pedido realizado com sucesso!'));
   } catch (error) {
-    yield put(orderFailure(error));
+    yield put(orderFailure('Falha ao processar a ordem'));
   }
 }
 
