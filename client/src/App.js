@@ -9,6 +9,7 @@ import ShopPage from './pages/shop/shop.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from './components/header/header.component';
 import CheckoutPage from './pages/checkout/checkout.component';
+import OrdersPage from './components/orders/orders.component';
 
 import { GlobalStyle } from './global.styles';
 
@@ -23,14 +24,15 @@ const App = ({ checkUserSession, currentUser }) => {
   return (
     <div>
       <GlobalStyle />
-        <Header />
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route path='/shop' component={ShopPage} />
-          <Route exact path='/signin' render={() =>
-            currentUser ? (<Redirect to='/' />) : (<SignInAndSignUpPage />)} />
-          <Route exact path='/checkout' component={CheckoutPage} />
-        </Switch>
+      <Header />
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route path='/shop' component={ShopPage} />
+        <Route exact path='/signin' render={() =>
+          currentUser ? (<Redirect to='/' />) : (<SignInAndSignUpPage />)} />
+        <Route exact path='/checkout' component={CheckoutPage} />
+        <Route exact path='/orders' component={OrdersPage} />
+      </Switch>
     </div>
   );
 }
