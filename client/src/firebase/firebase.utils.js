@@ -40,14 +40,13 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 }
 
-export const addCollectionToUserDocument = async (userAuth, data) => {
+export const addCollectionToUserDocument = async (collectionKey, userAuth, data) => {
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
-  console.log(userRef);
   try {
     await userRef
-      .collection('orders')
+      .collection(collectionKey)
       .add({ data });
   } catch (error) {
     console.log('error adding collection to user', error);
@@ -70,6 +69,19 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
   });
 
   return await batch.commit();
+};
+
+export const addCollectionWithUserDocRef = async (collectionKey, collection, userAuth) => {
+  const collectionRef = firestore.collection(collectionKey);
+  console.log(collectionRef);
+  
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const obj = {
+    user: userRef,
+    collection
+  }
+  const newDocRef = collectionRef.doc();
+  await newDocRef.set(obj);
 };
 
 export const convertCollectionsSnapshotToMap = (collections) => {
