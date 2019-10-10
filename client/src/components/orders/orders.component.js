@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './orders.styles.scss';
 
-import { connect } from 'react-redux';
+import { fetchOrdersStart } from '../../redux/orders/orders.actions';
 
-import NativeSelects from '../native-select/native-select.component';
+import { connect } from 'react-redux';
 
 const OrdersPage = ({ fetchOrdersStart }) => {
 	useEffect(() => {
