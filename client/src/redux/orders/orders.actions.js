@@ -1,8 +1,7 @@
 import OrdersTypes from './orders.types';
 
-export const fetchOrdersStart = status => ({
+export const fetchOrdersStart = () => ({
   type: OrdersTypes.FETCH_ORDERS_START,
-  payload: status
 });
 
 export const fetchOrdersSuccess = ordersMap => ({

@@ -4,15 +4,15 @@ import { compose } from 'redux';
 
 import { selectIsOrdersFetching } from '../../redux/orders/orders.selectors';
 import WithSpinner from '../with-spinner/with-spinner.component';
-import OrdersPage from '../orders/orders.component';
+import OrdersOverview from './orders-overview.component';
 
 const mapStateToProps = createStructuredSelector({
-  isFetchingOrders: selectIsOrdersFetching;
+  isFetchingOrders: selectIsOrdersFetching
 });
 
-const OrdersContainer = compose(
+const OrdersOverviewContainer = compose(
   connect(mapStateToProps),
   WithSpinner
-)(OrdersPage);
+)(OrdersOverview);
 
-export default OrdersContainer;
+export default OrdersOverviewContainer;
