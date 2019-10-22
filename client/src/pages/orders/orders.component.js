@@ -13,8 +13,8 @@ const OrdersPage = ({ fetchOrdersStart, match }) => {
 	}, [fetchOrdersStart]);
 
 	return (
-		<div className='orders-page'>
-      <Route exact
+		<div>
+			<Route exact
 				path={`${match.path}`}
 				component={OrdersOverviewContainer}
 			/>

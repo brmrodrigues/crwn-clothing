@@ -8,11 +8,13 @@ import OrdersPreview from '../orders-preview/orders-preview.component';
 import './orders-overview.styles.scss';
 
 const OrdersOverview = ({ orders }) => (
-	<div className='orders-page'>
+	<div>
 		{
-			orders.map(({id, ...otherOrderProps }) => (
-				<OrdersPreview key={id} {...otherOrderProps} />
-			))
+			orders && orders.count > 0 ?
+				orders.map(({ ...otherOrderProps }) => (
+					<OrdersPreview {...otherOrderProps} />
+				))
+				: <h1>Você ainda não possui nenhum pedido :(</h1>
 		}
 	</div>
 );

@@ -74,11 +74,11 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 export const addCollectionWithUserDocRef = async (collectionKey, collection, userAuth) => {
   const collectionRef = firestore.collection(collectionKey);
   console.log(collectionRef);
-  
-  const userRef = firestore.doc(`users/${userAuth.uid}`);
+
   const obj = {
-    user: userRef,
-    collection
+    user: userAuth.uid,
+    orderItems: collection,
+    createdAt: new Date()
   }
   const newDocRef = collectionRef.doc();
   await newDocRef.set(obj);
@@ -95,12 +95,21 @@ export const convertCollectionsSnapshotToMap = (collections) => {
       items
     };
   });
-
   // reduce array to a single object (or map) for optimization
   return transformedCollection.reduce((accumulator, collection) => {
     accumulator[collection.title.toLowerCase()] = collection;
     return accumulator;
   }, {})
+};
+
+export const convertOrdersSnapshotToArray = (orders) => {
+  return orders.docs.map(doc => {
+    const { orderItems, createdAt } = doc.data();
+    return {
+      orderItems,
+      createdAt
+    }
+  })
 };
 
 export const getCurrentUser = () => {

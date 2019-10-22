@@ -26,14 +26,13 @@ export function* orderRequest({ payload: orderData }) {
       yield put(orderFailure('Por favor, faça o login antes de realizar o pedido'));
       return;
     }
-    
+
     const items = yield orderData.map(
       cartItem => ({
         id: cartItem.id,
         name: cartItem.name,
         price: cartItem.price,
         quantity: cartItem.quantity,
-        createdAt: new Date()
       }));
     yield call(addCollectionWithUserDocRef, 'orders', items, userAuth);
     yield put(orderSuccess('Pedido realizado com sucesso!'));

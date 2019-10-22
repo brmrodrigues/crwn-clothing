@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './orders.styles.scss';
 
 import { fetchOrdersStart } from '../../redux/orders/orders.actions';
-import { OrdersOverviewContainer } from '../../components/orders-overview/orders-overview.container';
+import OrdersOverviewContainer from '../../components/orders-overview/orders-overview.container';
 
 import { connect } from 'react-redux';
 
