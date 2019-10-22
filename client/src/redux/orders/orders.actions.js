@@ -4,9 +4,9 @@ export const fetchOrdersStart = () => ({
   type: OrdersActionTypes.FETCH_ORDERS_START,
 });
 
-export const fetchOrdersSuccess = ordersMap => ({
+export const fetchOrdersSuccess = ordersArray => ({
   type: OrdersActionTypes.FETCH_ORDERS_SUCCESS,
-  payload: ordersMap
+  payload: ordersArray
 });
 
 export const fetchOrdersFailure = errorMessage => ({

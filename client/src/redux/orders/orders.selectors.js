@@ -2,8 +2,13 @@ import { createSelector } from 'reselect';
 
 const selectOrders = state => state.orders;
 
-export const selectOrdersForPreview = createSelector(
+export const selectOrdersCollections = createSelector(
   [selectOrders],
+  orders => orders.orders
+);
+
+export const selectOrdersForPreview = createSelector(
+  [selectOrdersCollections],
   orders => orders ? Object.keys(orders).map(key => orders[key]) : []
 );
 
