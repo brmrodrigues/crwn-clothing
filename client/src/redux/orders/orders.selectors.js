@@ -9,7 +9,10 @@ export const selectOrdersCollections = createSelector(
 
 export const selectOrdersForPreview = createSelector(
   [selectOrdersCollections],
-  orders => orders ? Object.keys(orders).map(key => orders[key]) : []
+  orders => {
+    // console.log(orders ? Object.keys(orders).map(key => orders[key]) : []);
+    return orders ? Object.keys(orders).map(key => orders[key]) : [];
+  }
 );
 
 export const selectIsOrdersFetching = createSelector(

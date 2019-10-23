@@ -18,7 +18,7 @@ export function* fetchOrdersAsync() {
     const ordersArray = yield call(
       convertOrdersSnapshotToArray,
       snapshot);
-    console.log(ordersArray);
+    // console.log(ordersArray);
     yield put(fetchOrdersSuccess(ordersArray));
   } catch (error) {
     yield put(fetchOrdersFailure(error.message));
